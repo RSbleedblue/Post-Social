@@ -1,27 +1,24 @@
-import mongoose from "mongoose";
+// userModel.js
+import mongoose, { Mongoose } from "mongoose";
 
-const userSchema = mongoose.Schema([
-    {
-        name:
-        {
-            type: String,
-            require: true,
-        },
-        email:
-        {
-            type: String,
-            require: true,
-            unique: true,
-            match:[/.+\@.+\../, "Please Enter a valid Email"]
-        },
-        password: {
-            type: String,
-            require: true,
-            validator: function(value){
-                return /^(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,12}$/.test(value)
-            },
-            message: "Password should be between 8-12 characters and have one special character"
-        }
-    }
-])
-export default  mongoose.model("User",userSchema);
+const userSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true,
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+        match: [/.+\@.+\../, "Please Enter a valid Email"]
+    },
+    password:{
+        type: String,
+        required: true,
+    },
+    posts:[{
+        type : mongoose.Types.ObjectId, ref : "Post"
+    }]
+});
+
+export default mongoose.model("User", userSchema);
