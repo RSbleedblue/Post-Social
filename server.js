@@ -6,7 +6,7 @@ dotenv.config();
 
 async function start(){
     await connectDB(process.env.MongoDB_url);
-    app.listen(3000, () => {
+    app.listen(process.env.PORT, () => {
         console.log("App is listening at port 3000");
     });
 }
