@@ -36,5 +36,24 @@ export class userController {
             console.log(err);
         }
     }
+    async logOutAll(req, res){
+        const id = req.query.id;
+        try{
+            const result = await userService.logOutAll(id);
+
+            if(result.success == false)
+            {
+                return result.message;
+            }
+            else{
+                return res.status(StatusCodes.ACCEPTED).json({
+                    user: id,
+                    message:result.message
+                });
+            }
+        }catch(error){
+            return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({message:"Sorry, there was an error while processing yur request, kindly try again!!!"});
+        }
+    }
 }
 export default userController;

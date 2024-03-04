@@ -18,6 +18,10 @@ const userSchema = new mongoose.Schema({
     },
     posts:[{
         type : mongoose.Types.ObjectId, ref : "Post"
+    }],
+    tokens: [{
+        type: mongoose.Schema.Types.String,
+        ref: 'Token'
     }]
 });
 

@@ -5,4 +5,5 @@ const userRouter = Router();
 const user = new userController();
 userRouter.post("/register", (req, res)=>user.signUser(req,res));
 userRouter.post("/login", (req,res) => user.login(req,res));
+userRouter.post("/logOutAll", (req, res)=> user.logOutAll(req, res));
 export default userRouter;
