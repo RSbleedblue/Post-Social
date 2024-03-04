@@ -6,7 +6,7 @@ export default {
       colors: {
         pmpurple: "#301B3F",
         secwhite: "#ffffff",
-        bgblue: "#EEF5FF",
+        bgmain: "#eef5ff",
         hoverLike : "#FFB5DA"
       },
     },
