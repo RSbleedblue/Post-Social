@@ -10,7 +10,7 @@ export default function Navbar() {
   return (
     <aside
       id="logo-sidebar"
-      className="flex flex-wrap h-screen"
+      className="flex  h-screen"
       aria-label="Sidebar"
     >
       <div class="h-full px-3 py-10 flex flex-col overflow-y-auto bg-white items-center">
