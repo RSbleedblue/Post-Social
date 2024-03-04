@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        pmpurple: "#7469B6",
+        pmpurple: "#301B3F",
         secwhite: "#ffffff",
         bgblue: "#EEF5FF",
       },

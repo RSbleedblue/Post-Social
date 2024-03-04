@@ -4,7 +4,7 @@ import SideFeed from "./sub-Components/SideFeed";
 
 function Home() {
   return (
-    <div className="flex gap-4">
+    <div className="flex gap-4 py-10">
       <SideFeed />
       <PostFeed />
     </div>

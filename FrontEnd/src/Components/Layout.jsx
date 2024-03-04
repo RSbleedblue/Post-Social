@@ -2,11 +2,14 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import Navbar from "./Navbar";
 
-export default function layout() {
+function Layout() {
   return (
-    <>
+    <div className="flex gap-4">
       <Navbar />
-      <Outlet />
-    </>
+      <div className="w-[82%]">
+        <Outlet />
+      </div>
+    </div>
   );
 }
+export default Layout;
