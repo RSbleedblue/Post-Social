@@ -6,7 +6,7 @@ function Layout() {
   return (
     <div className="flex gap-4">
       <Navbar />
-      <div className="w-[82%]">
+      <div className="flex-1">
         <Outlet />
       </div>
     </div>
