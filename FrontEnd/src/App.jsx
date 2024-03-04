@@ -13,7 +13,6 @@ function App() {
   return (
     <>
       <RouterProvider router = {router}> 
-        <Layout/>
       </RouterProvider>
     </>
   )

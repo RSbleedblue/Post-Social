@@ -8,7 +8,7 @@ export default {
     extend: {
       colors: {
         pmpurple: "#7469B6",
-        secwhite: "#fff",
+        secwhite: "#ffffff",
         bgblue: "#EEF5FF",
       },
     },

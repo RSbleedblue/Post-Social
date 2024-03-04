@@ -13,12 +13,13 @@ export default function Navbar() {
         <a href="https://flowbite.com/" class="flex items-center ps-2.5 mb-5">
             <img src={logo} class="h-6 sm:h-10" alt="Flowbite Logo" />
         </a>
-        <MdHome className='h-6 sm:h-10 w-[60%] p-1 text-gray-900 rounded-lg dark:pmpurple hover:bg-gray-100 mb-2'/>
-        <FaCompass className='h-6 sm:h-10 w-[60%] p-1 text-gray-900 rounded-lg dark:pmpurple hover:bg-gray-100 mb-2'/>
-        <BiSolidMessageSquareDetail className='h-6  sm:h-11 w-[60%] p-1 text-gray-900 rounded-lg dark:pmpurple hover:bg-gray-100 mb-2'/>
-        <IoNotifications className='h-6 sm:h-11 w-[60%] p-1 text-gray-900 rounded-lg dark:pmpurple hover:bg-gray-100 mb-2'/>
-        <MdAccountCircle className='h-6 sm:h-11 w-[60%] p-1 text-gray-900 rounded-lg dark:pmpurple hover:bg-gray-100 mb-2 mt-auto'/>
+        <MdHome className='h-6 sm:h-10 w-[60%] p-1 text-pmpurple rounded-lg dark:pmpurple hover:bg-gray-100 mb-2'/>
+        <FaCompass className='h-6 sm:h-10 w-[60%] p-1 text-pmpurple rounded-lg dark:pmpurple hover:bg-gray-100 mb-2'/>
+        <BiSolidMessageSquareDetail className='h-6  sm:h-11 w-[60%] p-1 text-pmpurple rounded-lg dark:pmpurple hover:bg-gray-100 mb-2'/>
+        <IoNotifications className='h-6 sm:h-11 w-[60%] p-1 text-pmpurple rounded-lg dark:pmpurple hover:bg-gray-100 mb-2'/>
+        <MdAccountCircle className='h-6 sm:h-11 w-[60%] p-1 text-pmpurple rounded-lg dark:pmpurple hover:bg-gray-100 mb-2 mt-auto'/>
     </div>
-   </aside>
+</aside>
+
   )
 }
