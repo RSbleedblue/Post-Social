@@ -23,7 +23,7 @@ cloudinaryConnect();
 var upload = multer({storage});
 app.use(upload.single("imgPath"));
 
-app.use(express.urlencoded());
+//app.use(express.urlencoded());
 // Routing
 app.use("/api/users",userRouter);
 app.use("/api/users/posts",jwtAuth,postRouter);
