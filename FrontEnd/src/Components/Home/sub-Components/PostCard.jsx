@@ -1,6 +1,6 @@
 import React from "react";
-import logo from "../../../assets/banner.jpg";
-import testPhoto from "../../../assets/logo/Test1.jpg";
+import logo from "../../../assets/Logo/SlackPic.png";
+import testPhoto from "../../../assets/Logo/Test1.jpg";
 import { BsThreeDots } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
 import { FaCommentAlt } from "react-icons/fa";
@@ -9,27 +9,21 @@ import { FaShareAlt } from "react-icons/fa";
 export default function PostCard() {
   return (
     <>
-      <div className="p-2 px-4 flex flex-row gap-4 items-center">
-        <img
-          src={logo}
-          alt="Image"
-          className="rounded-full h-16 overflow-hidden"
-        />
+      <div className="flex flex-row gap-4 items-center">
+        <img src={logo} alt="Image" className="rounded-full h-16" />
         <span className="text-pmpurple text-2xl font-semibold">
           Rivansh Srivastava
         </span>
         <BsThreeDots className="text-pmpurple ml-auto text-2xl cursor-pointer" />
       </div>
-      <p className="p-2 px-4 text-l text-pmpurple opacity-90">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate
-        dolorem, iure recusandae sunt dolor repellat libero cumque corporis
-        quidem ad?
+      <p className="p-4 text-l text-pmpurple opacity-90">
+        Naaa Maane ...........
       </p>
-      <div>
-        <div className="p-2 px-4 max-w-screen-lg flex justify-center">
+      <div className="text-xl flex ">
+        <div className="max-w-screen-lg mx-auto">
           <img
             src={testPhoto}
-            className="rounded-lg w-full object-cover"
+            className="rounded-lg w-full max-h-[300px] max-w-[600px]"
             alt="Test Photo"
           />
         </div>
