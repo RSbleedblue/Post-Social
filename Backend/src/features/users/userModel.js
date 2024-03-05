@@ -18,7 +18,13 @@ const userSchema = new mongoose.Schema({
     },
     posts:[{
         type : mongoose.Types.ObjectId, ref : "Post"
-    }]
+    }],
+    profileUrl : {
+        type: String,
+        default:["Please Provide The Profile Pic!"],
+    }
+
+
 });
 
 export default mongoose.model("User", userSchema);

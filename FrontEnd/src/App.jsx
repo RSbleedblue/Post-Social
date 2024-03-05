@@ -11,7 +11,6 @@ import Home from "./Components/Home/Home";
 import DyHome, {loader } from "./Components/Home/DyHome.jsx";
 import Login from "./Components/Auth/Login.jsx";
 import Signup from "./Components/Auth/Signup.jsx";
-import { useState } from "react";
 
 
 const router = createBrowserRouter(

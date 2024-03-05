@@ -26,7 +26,6 @@ const postModel = new mongoose.Schema([
 postModel.pre('save',async function(next){
     try{
         const username = await userModel.findById(this.user);
-        console.log(username);
         if(username){
             this.userName = username.name;
         }
