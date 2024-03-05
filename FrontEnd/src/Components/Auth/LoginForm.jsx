@@ -6,7 +6,7 @@ import { useState } from "react";
 import logo from "../../assets/Logo/logo.png"
 
 
-const LoginForm = ({setIsLoggedIn}) => {
+const LoginForm = () => {
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState( {
@@ -28,11 +28,10 @@ const LoginForm = ({setIsLoggedIn}) => {
 
     function submitHandler(event) {
         event.preventDefault();
-        setIsLoggedIn(true);
         toast.success("Logged In");
         console.log("Printing the formData ");
         console.log(formData)
-        navigate("/");
+        navigate("/home");
     }
     function handleCreateAccount(event){
         event.preventDefault();
@@ -90,7 +89,7 @@ const LoginForm = ({setIsLoggedIn}) => {
             </Link>
         </label>
 
-        <button className='bg-pmpurple text-secwhite rounded-[8px] font-medium text-richblack-900 px-[12px] py-[8px] mt-6'>
+        <button className='bg-pmpurple text-secwhite rounded-[8px] font-medium px-[12px] py-[8px] mt-6'>
             Sign In
         </button>
 

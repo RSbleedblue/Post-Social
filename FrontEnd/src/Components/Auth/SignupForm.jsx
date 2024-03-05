@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import logo from "../../assets/Logo/logo.png";
 
 
-const SignupForm = ({setIsLoggedIn}) => {
+const SignupForm = () => {
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
@@ -38,7 +38,6 @@ const SignupForm = ({setIsLoggedIn}) => {
             return ;
         }
 
-        setIsLoggedIn(true);
         toast.success("Account Created");
         const accountData = {
             ...formData
