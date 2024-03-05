@@ -7,7 +7,7 @@ export default {
         pmpurple: "#301B3F",
         secwhite: "#ffffff",
         bgmain: "#eef5ff",
-        hoverLike : "#FFB5DA"
+        hoverLike: "#FFB5DA",
       },
     },
   },

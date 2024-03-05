@@ -1,10 +1,11 @@
 import React from "react";
-import logo from '../assets/Logo/logo.png';
+import logo from "../assets/logo/logo.png";
 import { MdHome } from "react-icons/md";
 import { FaCompass } from "react-icons/fa";
 import { BiSolidMessageSquareDetail } from "react-icons/bi";
 import { IoNotifications } from "react-icons/io5";
 import { MdAccountCircle } from "react-icons/md";
+import { GoDotFill } from "react-icons/go";
 
 export default function Navbar() {
   return (

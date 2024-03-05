@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../../assets/banner.jpg";
+import logo from "../../../assets/Logo/SlackPic.png";
 import testPhoto from "../../../assets/Logo/Test1.jpg";
 import { BsThreeDots } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
@@ -11,22 +11,21 @@ export default function PostCard() {
   return (
     <>
       <div className="flex flex-row gap-4 items-center">
-        <div className="rounded-full overflow-hidden max-h-[50px] max-w-[50px]">
-          <img src={logo} alt="Image" className="w-full h-full object-cover" />
-        </div>
+        <img src={logo} alt="Image" className="rounded-full h-16" />
         <span className="text-pmpurple text-2xl font-semibold">
           Rivansh Srivastava
         </span>
         <BsThreeDots className="text-pmpurple ml-auto text-2xl cursor-pointer" />
       </div>
-      <p className="p-3 text-l text-pmpurple opacity-90">
-        Lorem, ipsum 
+      <p className="p-4 text-l text-pmpurple opacity-90">
+        Naaa Maane ...........
       </p>
       <div className="text-xl flex w-[98%] justify-center">
         <div className="max-w-screen-lg mx-auto rounded-lg overflow-hidden">
+
           <img
             src={testPhoto}
-            className="w-full h-full object-cover"
+            className="rounded-lg w-full max-h-[300px] max-w-[600px]"
             alt="Test Photo"
           />
         </div>
@@ -49,6 +48,7 @@ export default function PostCard() {
           Add Comment....
         </span>
       </div>
+
     </>
   );
 }
