@@ -3,26 +3,38 @@ import {
   RouterProvider,
   createBrowserRouter,
   createRoutesFromElements,
-  Route,
+  Route, Routes
 } from "react-router-dom";
 
-import Layout from "./Components/Layout";
-import Home from "./Components/Home/Home";
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
-      </Route>
-    </>
-  )
-);
+//import Layout from "./Components/Layout";
+import Home from "./Components/Home/Home";
+import { useState } from "react";
+import Login from "./Components/Auth/Login";
+import Signup from "./Components/Auth/Signup";
 function App() {
+  
+const [isLoggedIn,setIsLoggedIn] = useState(false);
+
+
   return (
-    <>
-      <RouterProvider router={router} />
-    </>
+    <div>
+       <Routes>
+        {
+          console.log("we are here ")
+        }
+          <Route path="/" element= {<Home/>} />
+          <Route path="/login" element= {<Login setIsLoggedIn={setIsLoggedIn}/>} />
+          <Route path="/signup" element= {<Signup setIsLoggedIn={setIsLoggedIn}/>} />
+
+
+      {/* <Route path="/signup" element={<Signup  setIsLoggedIn={setIsLoggedIn} />} /> */}
+
+      </Routes>
+
+    </div>
+   
+
   );
 }
 
