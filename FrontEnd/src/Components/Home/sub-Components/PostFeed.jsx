@@ -5,14 +5,12 @@ function PostFeed({ post }) {
 
   return (
     <div className="w-[50%] h-full no-scrollbar overflow-y-scroll">
-      <div className="p-2 flex rounded-xl min-w-[320px] bg-white text-white flex-col">
-        <div className="p-4 m-2 w-[100%]">
+        <div className=" -mt-3 w-[100%]">
           {postData.map((item, index) => (
             <PostCard key={index} cardData={item} />
           ))}
         </div>
       </div>
-    </div>
   );
 }
 
