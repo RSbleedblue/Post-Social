@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import userModel from "../users/userModel.js";
 
 const postModel = new mongoose.Schema([
     {
@@ -18,18 +19,21 @@ const postModel = new mongoose.Schema([
     user:{
         type : mongoose.Types.ObjectId , ref:"User"
     },
-    // likes:[
-    //     {
-    //         type : mongoose.Types.ObjectId , ref : ""
-    //     }
-    // ]
-    // comment:[
-    //     {
-    //         type : mongoose.Types.ObjectId , ref : "comment"
-    //     }
-    // ]
-
+    userName:{
+        type : String
     }
-])
+}]);
+postModel.pre('save',async function(next){
+    try{
+        const username = await userModel.findById(this.user);
+        if(username){
+            this.userName = username.name;
+        }
+        next();
+    }
+    catch(err){
+        next(err);
+    }
+})
 
 export default mongoose.model("Post",postModel);

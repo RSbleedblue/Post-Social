@@ -8,7 +8,7 @@ import {
 
 import Layout from "./Components/Layout";
 import Home from "./Components/Home/Home";
-import DyHome, { loader } from "./Components/Home/DyHome";
+import DyHome, {loader } from "./Components/Home/DyHome.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
