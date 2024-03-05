@@ -8,12 +8,17 @@ import {
 
 import Layout from "./Components/Layout";
 import Home from "./Components/Home/Home";
+import DyHome from "./Components/Home/DyHome";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
+      <Route path="/home" element={<Layout />}>
+        <Route element={<Home />}>
+          <Route index element = {<DyHome /> }/>
+          {/* <Route path="feed" /> */}
+        </Route>
+  
       </Route>
     </>
   )

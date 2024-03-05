@@ -10,7 +10,7 @@ import { FaRegShareFromSquare } from "react-icons/fa6";
 export default function PostCard() {
   return (
     <>
-      <div className="flex flex-row gap-4 items-center">
+      <div className="flex flex-row gap-4 items-center border-gray-300 border-b-2 px-2  py-2">
         <div className="rounded-full overflow-hidden max-h-[50px] max-w-[50px]">
           <img src={logo} alt="Image" className="w-full h-full object-cover" />
         </div>
