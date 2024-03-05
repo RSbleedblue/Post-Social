@@ -8,17 +8,16 @@ import {
 
 import Layout from "./Components/Layout";
 import Home from "./Components/Home/Home";
-import DyHome from "./Components/Home/DyHome";
+import DyHome, { loader } from "./Components/Home/DyHome";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="/home" element={<Layout />}>
         <Route element={<Home />}>
-          <Route index element = {<DyHome /> }/>
+          <Route index element={<DyHome />} loader={loader} />
           {/* <Route path="feed" /> */}
         </Route>
-  
       </Route>
     </>
   )
