@@ -4,7 +4,7 @@ import Template from './Template'
 import login_img from "../../assets/Logo/naruto.png";
 import mountain_img from "../../assets/Logo/mountain.jpg"
 
-const Signup = ({setIsLoggedIn}) => {
+const Signup = ( ) => {
     return (
         <Template
           title="Join the millions creating content with Instahub"
@@ -13,7 +13,6 @@ const Signup = ({setIsLoggedIn}) => {
           image={login_img}
           frame={mountain_img}
           formtype="signup"
-          setIsLoggedIn={setIsLoggedIn}
         />
       )
 }

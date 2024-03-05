@@ -2,7 +2,7 @@ import React from 'react'
 import loginImg from "../../assets/Auth/signup.png"
 import Template from './Template'
 
-const Login = ({setIsLoggedIn}) => {
+const Login = ( ) => {
   return (
     <div className='bg-bgmain h-full'>
         <Template 
@@ -11,7 +11,6 @@ const Login = ({setIsLoggedIn}) => {
               desc2="Create content to future-proof your career."
               image={loginImg}
               formtype="login"
-              setIsLoggedIn={setIsLoggedIn}
         />
     </div>
   )

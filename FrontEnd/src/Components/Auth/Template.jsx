@@ -4,7 +4,7 @@ import SignupForm from './SignupForm'
 import logo from "../../assets/Logo/logo.png"
 import { FaTable } from 'react-icons/fa'
 
-const Template = ({title, desc1, desc2, image, frame, formtype, setIsLoggedIn}) => {
+const Template = ({title, desc1, desc2, image, frame, formtype}) => {
     return (
         <div className='flex justify-between  max-w-[1160px] py-12 mx-auto gap-x-12 gap-y-0 '>
     
@@ -22,8 +22,8 @@ const Template = ({title, desc1, desc2, image, frame, formtype, setIsLoggedIn}) 
                 </p>
     
                 {formtype === "signup" ? 
-                (<SignupForm setIsLoggedIn={setIsLoggedIn}/>):
-                (<LoginForm setIsLoggedIn={setIsLoggedIn}/>)}
+                (<SignupForm/>):
+                (<LoginForm/>)}
     
                 {/* <div className='flex w-full items-center my-4 gap-x-2'>
                     <div className='w-full h-[1px] bg-richblack-700'></div>

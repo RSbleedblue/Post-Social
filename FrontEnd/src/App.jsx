@@ -3,38 +3,37 @@ import {
   RouterProvider,
   createBrowserRouter,
   createRoutesFromElements,
-  Route, Routes
+  Route,
 } from "react-router-dom";
 
-
-//import Layout from "./Components/Layout";
+import Layout from "./Components/Layout";
 import Home from "./Components/Home/Home";
+import DyHome, {loader } from "./Components/Home/DyHome.jsx";
+import Login from "./Components/Auth/Login.jsx";
+import Signup from "./Components/Auth/Signup.jsx";
 import { useState } from "react";
-import Login from "./Components/Auth/Login";
-import Signup from "./Components/Auth/Signup";
+
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <>
+      <Route path="/home" element={<Layout />}>
+        <Route element={<Home />}>
+          <Route index element={<DyHome />} loader={loader} />
+          {/* <Route path="feed" /> */}
+        </Route>
+      </Route>
+      <Route path="/login" element= {<Login />} />
+      <Route path="/signup" element= {<Signup/>} />
+    </>
+  )
+);
+
 function App() {
-  
-const [isLoggedIn,setIsLoggedIn] = useState(false);
-
-
   return (
-    <div>
-       <Routes>
-        {
-          console.log("we are here ")
-        }
-          <Route path="/" element= {<Home/>} />
-          <Route path="/login" element= {<Login setIsLoggedIn={setIsLoggedIn}/>} />
-          <Route path="/signup" element= {<Signup setIsLoggedIn={setIsLoggedIn}/>} />
-
-
-      {/* <Route path="/signup" element={<Signup  setIsLoggedIn={setIsLoggedIn} />} /> */}
-
-      </Routes>
-
-    </div>
-   
-
+    <>
+      <RouterProvider router={router} />
+    </>
   );
 }
 

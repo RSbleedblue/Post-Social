@@ -1,14 +1,12 @@
 import React from "react";
-import PostFeed from "./sub-Components/PostFeed";
 import SideFeed from "./sub-Components/SideFeed";
-import RSideFeed from "./sub-Components/RSideFeed";
+import { Outlet } from "react-router-dom";
 
 function Home() {
   return (
-    <div className="flex gap-4 py-10">
+    <div className="flex gap-4 pt-10 h-full">
       <SideFeed />
-      <PostFeed />
-      <RSideFeed />
+      <Outlet />
     </div>
   );
 }
