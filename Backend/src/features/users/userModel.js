@@ -15,16 +15,19 @@ const userSchema = new mongoose.Schema({
     password:{
         type: String,
         required: true,
+        select: false,
     },
     posts:[{
         type : mongoose.Types.ObjectId, ref : "Post"
     }],
     profileUrl : {
         type: String,
-        default:["Please Provide The Profile Pic!"],
+        default: "",
+    },
+    coverUrl : {
+        type: String,
+        default: "",
     }
-
-
 });
 
 export default mongoose.model("User", userSchema);

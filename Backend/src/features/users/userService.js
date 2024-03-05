@@ -45,5 +45,19 @@ export default class userServices {
             console.error("Error in login:", error);
             return { success: false, message: "An error occurred while processing your request." };
         }
-    }    
+    }  
+    async findUser(id){
+        const user = await this.UserModel.findById(id);
+        if(!user){
+            return { success: false, message: "Couldnt Found User!" };
+        }
+        return user; 
+    }  
+    async findUserforPost(id){
+        const user = await this.UserModel.findById(id).select("-posts -name -email");
+        if(!user){
+            return { success: false, message: "Couldnt Found User!"};
+        }
+        return user;
+    }
 }
