@@ -13,7 +13,7 @@ export default function PostCard({ cardData }) {
     <div className="bg-white p-4 m-4 rounded-lg">
     <div className="flex flex-row gap-4 items-center border-gray-300 border-b-2 px-2  py-2">
         <div className="rounded-full overflow-hidden max-h-[50px] max-w-[50px]">
-          <img src={logo} alt="Image" className="w-full h-full object-cover" />
+          <img src={cardData.profileUrl} alt="Image" className="w-full h-full object-cover" />
         </div>
         <span className="text-pmpurple text-2xl font-semibold">
         {cardData.userName?.charAt(0).toUpperCase() + cardData.userName?.slice(1)}
@@ -42,14 +42,13 @@ export default function PostCard({ cardData }) {
       </div>
       <div className="flex flex-row gap-1 items-center">
         <div className="rounded-full overflow-hidden max-h-[30px] max-w-[30px]">
-          <img src={logo} alt="Image" className="w-full h-full object-cover" />
+          <img src={cardData.profileUrl} alt="Image" className="w-full h-full object-cover" />
         </div>
         <span className="text-pmpurple text-xs opacity-50">
           Add Comment....
         </span>
       </div>
     </div>
-      
     </>
   );
 }

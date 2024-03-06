@@ -9,6 +9,9 @@ import {
 import Layout from "./Components/Layout";
 import Home from "./Components/Home/Home";
 import DyHome, {loader } from "./Components/Home/DyHome.jsx";
+import Login from "./Components/Auth/Login.jsx";
+import Signup from "./Components/Auth/Signup.jsx";
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,9 +22,12 @@ const router = createBrowserRouter(
           {/* <Route path="feed" /> */}
         </Route>
       </Route>
+      <Route path="/login" element= {<Login />} />
+      <Route path="/signup" element= {<Signup/>} />
     </>
   )
 );
+
 function App() {
   return (
     <>
