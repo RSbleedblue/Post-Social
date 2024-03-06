@@ -10,6 +10,7 @@ import cors from "cors";
 const app = express();
 app.use(cors());
 app.use(express.json());
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "uploads");
@@ -21,11 +22,12 @@ const storage = multer.diskStorage({
     cb(null, file.buffer);
   },
 });
+
 cloudinaryConnect();
+
 var upload = multer({ storage });
 app.use(upload.single("imgPath"));
 
-//app.use(express.urlencoded());
 // Routing
 app.use("/api/users", userRouter);
 app.use("/api/users/posts", jwtAuth, postRouter);
