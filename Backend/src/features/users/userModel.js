@@ -22,11 +22,11 @@ const userSchema = new mongoose.Schema({
     }],
     profileUrl : {
         type: String,
-        default: "",
+        default: "http://res.cloudinary.com/dxquzx2ep/image/upload/v1709643238/dxa9yxcmwgog5dbe0raq.jpg",
     },
     coverUrl : {
         type: String,
-        default: "",
+        default: "http://res.cloudinary.com/dxquzx2ep/image/upload/v1709656218/amaq66l9wnahmrlw6q66.jpg",
     }
 });
 

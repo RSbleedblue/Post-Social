@@ -4,7 +4,7 @@ import RSideFeed from './sub-Components/RSideFeed'
 import { useLoaderData } from 'react-router-dom';
 
 export async function loader(){
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJpdmFuc2g2M0BnbWFpbC5jb20iLCJ1c2VySWQiOiI2NWU2OTZhZjg0ODQ3MmEyZmVhODE4NGQiLCJpYXQiOjE3MDk2Mzg0MDAsImV4cCI6MTcwOTY0NTYwMH0.zP2chzbpksLfLf_ZSvffKbkuG8bflOp0kpm4fxoi7nk";
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByYXRpazEyM0BnbWFpbC5jb20iLCJ1c2VySWQiOiI2NWU4MGQwYTU2ZmFiYzI2M2ExN2UwMWUiLCJpYXQiOjE3MDk3MDY1MjIsImV4cCI6MTcwOTcxMzcyMn0.CX7kEUNRmALV7DAENidvA9Fr9K3SE2xynRzytpyKMco";
      const apiCall = await fetch("http://localhost:3000/api/users/posts",
                     {method:'get',
                     headers: {
@@ -20,7 +20,7 @@ export default function DyHome() {
   return (
     <>
         <PostFeed post = {data}/>
-        <RSideFeed />
+        <RSideFeed post = {data}/>
     </>
   )
 }

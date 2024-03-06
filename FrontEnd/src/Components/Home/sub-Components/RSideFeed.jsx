@@ -2,12 +2,13 @@ import React from "react";
 import luffy from "../../../assets/banner.jpg";
 import prof_banner from "../../../assets/profile_banner.jpeg";
 
-function RSideFeed() {
+function RSideFeed({post}) {
+  console.log(post);
   return (
     <div className="rounded-lg text-black h-[480px] flex-1 flex flex-col pl-6 justify-between relative">
       <div className="w-full rounded-xl min-h-[100px] relative overflow-hidden">
         <img
-          src={prof_banner}
+          src={luffy}
           className="w-full h-full object-cover opacity-80"
         />
       </div>
@@ -34,7 +35,7 @@ function RSideFeed() {
         </button>
       </div>
       <div className="bg-white w-[120px] rounded-full h-[120px] absolute -translate-y-1/2 top-[38%] -left-1 border-bgmain border-8 overflow-hidden">
-        <img src={luffy} alt="" />
+        <img src={prof_banner} alt="" />
       </div>
     </div>
   );
