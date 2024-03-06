@@ -8,7 +8,10 @@ function RSideFeed({ post }) {
   return (
     <div className="flex-1 flex-col relative h-[72%]">
       <div className="w-full h-[40%] rounded-lg over overflow-hidden">
-        <img src={luffy} className="w-full h-full object-cover opacity-80" />
+        <img
+          src={prof_banner}
+          className="w-full h-full object-cover opacity-80"
+        />
       </div>
       <div className="w-full bg-white h-[60%] rounded-lg">
         <div className="pt-8 text-pmpurple font-semibold text-xl flex justify-center">
