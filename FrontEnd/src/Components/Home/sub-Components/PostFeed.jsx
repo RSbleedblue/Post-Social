@@ -5,7 +5,7 @@ function PostFeed({ post }) {
   return (
     <div className="w-[50%] h-full no-scrollbar overflow-y-scroll">
       <div className=" -mt-3 w-[100%]">
-        {postData.map((item, index) => (
+        {postData?.map((item, index) => (
           <PostCard key={index} cardData={item} />
         ))}
       </div>

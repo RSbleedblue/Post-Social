@@ -7,8 +7,9 @@ export default {
         pmpurple: "#301B3F",
         secwhite: "#ffffff",
         bgmain: "#eef5ff",
-        hoverLike : "#FFB5DA",
-        random:'#d3dbe7',
+        hoverLike: "#FFB5DA",
+        random: "#d3dbe7",
+        cmntpurple: "#9E63EA",
         richblack: {
           5: "#F1F2FF",
           25: "#DBDDEA",

@@ -3,8 +3,7 @@ import luffy from "../../../assets/banner.jpg";
 import prof_banner from "../../../assets/profile_banner.jpeg";
 import { FaRegUser } from "react-icons/fa";
 
-function RSideFeed({ post }) {
-  console.log(post);
+function RSideFeed() {
   return (
     <div className="flex-1 flex-col relative h-[72%]">
       <div className="w-full h-[40%] rounded-lg over overflow-hidden">

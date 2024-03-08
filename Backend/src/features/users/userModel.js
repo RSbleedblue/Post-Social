@@ -33,6 +33,8 @@ const userSchema = new mongoose.Schema({
     default:
       "http://res.cloudinary.com/dxquzx2ep/image/upload/v1709656218/amaq66l9wnahmrlw6q66.jpg",
   },
+  likes: [{ type: mongoose.Types.ObjectId, ref: "Post" }],
+  likestotal: { type: Number, default: 0 },
 });
 
 export default mongoose.model("User", userSchema);
