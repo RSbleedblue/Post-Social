@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import ReplyCard from "./ReplyCard";
+import PuffLoader from "react-spinners/PuffLoader";
 
 function CommentCard({ comment }) {
   async function getReply() {
+    setLoading((loading) => !loading);
     const replies = await fetch(
       `http://localhost:3000/api/users/posts/${comment._id}/getreply`,
       {
@@ -18,14 +20,21 @@ function CommentCard({ comment }) {
         setReply(data.comment);
       }
     }
-    console.log(reply);
+    setLoading((loading) => !loading);
   }
 
   const [reply, setReply] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   return (
     <>
+      {loading && (
+        <div className="fixed top-0 left-0 w-full h-full z-10 bg-black bg-opacity-45 flex justify-center items-center">
+          <PuffLoader color="#36d7b7" loading={loading} />
+        </div>
+      )}
       <div className="bg-pmpurple rounded-xl text-white">
+        {/* Parent Comment */}
         <div className="flex gap-4 items-center p-4">
           <img
             src={comment.commenter.profileUrl}
@@ -33,7 +42,6 @@ function CommentCard({ comment }) {
           />
           <div>
             <p className="font-semibold text-sm">{comment.commenter.name}</p>
-            {/* Parent Comment */}
             <p className="">{comment.text}</p>
           </div>
           <div className="ml-auto">
@@ -44,7 +52,6 @@ function CommentCard({ comment }) {
           </div>
         </div>
         {/* Child Comment Block */}
-
         {reply && reply.map((rep) => <ReplyCard reply={rep} />)}
       </div>
     </>

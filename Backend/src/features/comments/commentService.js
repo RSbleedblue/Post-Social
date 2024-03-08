@@ -61,7 +61,6 @@ export default class commentService {
         select: "-likes -email -posts -likestotal",
       },
     });
-    console.log(comments);
     return comments.replies;
   }
 }

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import { FaComments } from "react-icons/fa6";
 import CommentCard from "./CommentCard";
+import ScaleLoader from "react-spinners/ScaleLoader";
 
 function PostModal({ card, toggleModal }) {
   useEffect(() => {
@@ -25,6 +26,11 @@ function PostModal({ card, toggleModal }) {
 
   return (
     <div>
+      {!comments && (
+        <div className="fixed top-0 left-0 w-full h-full z-10 bg-black bg-opacity-45 flex justify-center items-center">
+          <ScaleLoader color="#36d7b7" loading={!comments} />
+        </div>
+      )}
       {comments && (
         <div className="fixed top-0 left-0 w-screen h-screen z-50 bg-black flex justify-center items-center gap-4 px-10 bg-opacity-70">
           <IoMdClose
@@ -49,6 +55,14 @@ function PostModal({ card, toggleModal }) {
             <img src={card.imgUrl} className="rounded-lg" />
           </div>
           <div className=" w-[30%] h-2/3 flex flex-col gap-2 overflow-y-scroll">
+            {/* ADD COMMENT */}
+            <div className="w-full flex items-center gap-2">
+              <p className="text-white text-xs font-bold">Comment : </p>
+              <input
+                className="w-[80%] rounded-lg p-2 focus:outline-none"
+                placeholder="Add a comment...."
+              />
+            </div>
             {/* COMMENT BLOCK */}
             {comments?.map((comment) => (
               <CommentCard comment={comment} />
