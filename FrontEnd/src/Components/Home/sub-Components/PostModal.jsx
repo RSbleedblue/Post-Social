@@ -1,10 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import { FaComments } from "react-icons/fa6";
 import CommentCard from "./CommentCard";
 import ScaleLoader from "react-spinners/ScaleLoader";
+import { IoSendSharp } from "react-icons/io5";
 
 function PostModal({ card, toggleModal }) {
+  const [comments, setComments] = useState(null);
+  const inputRef = useRef(null);
+  const [pageUpdater, setPageUpdater] = useState(false);
+
   useEffect(() => {
     async function fetchComment() {
       const result = await fetch(
@@ -20,9 +25,25 @@ function PostModal({ card, toggleModal }) {
       setComments(data.comments);
     }
     fetchComment();
-  }, []);
+  }, [pageUpdater]);
 
-  const [comments, setComments] = useState(null);
+  async function addComment() {
+    const token = import.meta.env.VITE_JWTOKEN;
+    const result = await fetch(
+      `http://localhost:3000/api/users/posts/${card._id}/addcomment`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ text: inputRef.current.value }),
+      }
+    );
+    if (result.ok) {
+      setPageUpdater((pageUpdater) => !pageUpdater);
+    }
+  }
 
   return (
     <div>
@@ -58,10 +79,19 @@ function PostModal({ card, toggleModal }) {
             {/* ADD COMMENT */}
             <div className="w-full flex items-center gap-2">
               <p className="text-white text-xs font-bold">Comment : </p>
-              <input
-                className="w-[80%] rounded-lg p-2 focus:outline-none"
-                placeholder="Add a comment...."
-              />
+              <div className="w-[80%] flex relative">
+                <input
+                  ref={inputRef}
+                  className="rounded-lg p-2 focus:outline-none flex-1"
+                  placeholder="Add a comment...."
+                />
+                <button
+                  className="px-2 absolute right-0 top-1/2 -translate-y-1/2 text-white"
+                  onClick={addComment}
+                >
+                  <IoSendSharp className="text-black" />
+                </button>
+              </div>
             </div>
             {/* COMMENT BLOCK */}
             {comments?.map((comment) => (

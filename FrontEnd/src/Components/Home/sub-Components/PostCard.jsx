@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import logo from "../../../assets/banner.jpg";
-import testPhoto from "../../../assets/Logo/Test1.jpg";
+import { MdOutlinePersonAdd } from "react-icons/md";
 import { BsThreeDots } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
 import { FaRegCommentAlt } from "react-icons/fa";
@@ -12,6 +11,23 @@ export default function PostCard({ cardData }) {
   function modalToggle() {
     setToggleModal((toggleModal) => !toggleModal);
     console.log("asoidjsao");
+  }
+
+  async function updateFriend() {
+    const token = import.meta.env.VITE_JWTOKEN;
+    const result = await fetch(
+      `http://localhost:3000/api/users/${cardData.user}/updatefriend`,
+      {
+        method: "get",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    if (result.ok) {
+      setFriend((friend) => !friend);
+    }
   }
 
   async function likePost(e) {
@@ -39,7 +55,8 @@ export default function PostCard({ cardData }) {
   const [liked, setLiked] = useState(cardData.didUserLiked);
   const [totalLike, setTotalLike] = useState(cardData.totallikes);
   const [toggleModal, setToggleModal] = useState(false);
-  console.log(toggleModal);
+  const [friend, setFriend] = useState(cardData.isCurUserFriend);
+
   return (
     <>
       <div className="bg-white p-4 m-4 rounded-lg">
@@ -55,6 +72,15 @@ export default function PostCard({ cardData }) {
             {cardData.userName?.charAt(0).toUpperCase() +
               cardData.userName?.slice(1)}
           </span>
+          {!cardData.isCurUserPost && !friend && (
+            <div
+              className="flex items-center gap-2 border-[1px] px-1 rounded-lg border-black text-sm cursor-pointer"
+              onClick={updateFriend}
+            >
+              <MdOutlinePersonAdd className="text-lg" />
+              Add Friend
+            </div>
+          )}
           <BsThreeDots className="text-pmpurple ml-auto text-2xl cursor-pointer" />
         </div>
         <p className="p-3 text-l text-pmpurple opacity-90">{cardData.title}</p>
@@ -68,7 +94,7 @@ export default function PostCard({ cardData }) {
             />
           </div>
         </div>
-        <div className="flex p-2 m-2 flex-row ">
+        <div className="flex p-2 m-2 flex-row">
           {!liked && (
             <FaRegHeart
               className="text-pmpurple text-2xl hover:text-hoverLike mb-2 cursor-pointer"
@@ -87,9 +113,9 @@ export default function PostCard({ cardData }) {
           <FaRegShareFromSquare className="text-pmpurple text-2xl hover:text-hoverLike cursor-pointer" />
         </div>
         <div className="flex mb-4 flex-row gap-1 items-center">
-          <span className="text-pmpurple ">{cardData.caption}</span>
+          <span className="text-pmpurple">{cardData.caption}</span>
         </div>
-        <div className="flex flex-row gap-1 items-center">
+        {/* <div className="flex flex-row gap-1 items-center">
           <div className="rounded-full overflow-hidden max-h-[30px] max-w-[30px]">
             <img
               src={cardData.profileUrl}
@@ -97,10 +123,12 @@ export default function PostCard({ cardData }) {
               className="w-full h-full object-cover"
             />
           </div>
-          <span className="text-pmpurple text-xs opacity-50">
-            Add Comment....
-          </span>
-        </div>
+          <div>
+            <span className="text-pmpurple text-xs opacity-50">
+              Add Comment....
+            </span>
+          </div>
+        </div> */}
       </div>
       {toggleModal && <PostModal card={cardData} toggleModal={modalToggle} />}
     </>
