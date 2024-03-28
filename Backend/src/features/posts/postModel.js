@@ -22,9 +22,9 @@ const postModel = new mongoose.Schema({
   userName: {
     type: String,
   },
-  likes: [{ type: mongoose.Types.ObjectId, ref: "User" }],
+  likes: [{ _id: false, type: mongoose.Types.ObjectId, ref: "User" }],
   totallikes: { type: Number, default: 0 },
-  comments: [{ type: mongoose.Types.ObjectId, ref: "comment" }],
+  comments: [{ _id: false, type: mongoose.Types.ObjectId, ref: "comment" }],
 });
 
 postModel.pre("save", async function (next) {

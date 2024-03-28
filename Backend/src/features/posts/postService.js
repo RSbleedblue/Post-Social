@@ -6,7 +6,7 @@ export default class postService {
     this.postModel = postModel;
   }
   async getPosts() {
-    const result = postModel.find();
+    const result = postModel.find().select("-likes");
     return result;
   }
   async addPost(caption, title, imgUrl, user) {

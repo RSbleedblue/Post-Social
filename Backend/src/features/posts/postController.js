@@ -19,8 +19,17 @@ export class postController {
           post.id,
           req.userID
         );
+        const isThisCurUserPost = user == req.userID;
+        const isThisMyFriend = await userServiceInstance.isMyFriend(
+          user,
+          req.userID
+        );
         return Object.assign(
-          { didUserLiked: didCurUserLiked },
+          {
+            didUserLiked: didCurUserLiked,
+            isCurUserPost: isThisCurUserPost,
+            isCurUserFriend: isThisMyFriend,
+          },
           userInfo._doc,
           post._doc
         );

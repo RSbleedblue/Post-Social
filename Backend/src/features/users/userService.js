@@ -41,7 +41,7 @@ export default class userServices {
         } else {
           const payload = { email: user.email, userId: user._id };
           const token = jwt.sign(payload, process.env.SECRET_KEY, {
-            expiresIn: "2h",
+            expiresIn: "4h",
           });
           return { success: true, token: token };
         }
@@ -93,5 +93,30 @@ export default class userServices {
     } catch (error) {
       console.error("Error toggling like:", error);
     }
+  }
+  async updateFriend(userId, friendId) {
+    const self = await this.UserModel.findById(userId).select("+friends");
+    const isAlreadyAdded = self.friends.includes(friendId);
+    if (isAlreadyAdded) {
+      await this.UserModel.findByIdAndUpdate(userId, {
+        $pull: { friends: friendId },
+      });
+    } else {
+      await this.UserModel.findByIdAndUpdate(userId, {
+        $push: { friends: friendId },
+      });
+    }
+  }
+
+  async isMyFriend(postUser, curUser) {
+    const user = await this.UserModel.findById(curUser).select("+friends");
+    return user.friends.includes(postUser);
+  }
+
+  async getFriends(userID) {
+    const user = await this.UserModel.findById(userID)
+      .select("+friends")
+      .populate("friends");
+    return user.friends;
   }
 }
