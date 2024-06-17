@@ -20,9 +20,10 @@ export default function PostCard({ cardData }) {
   }
 
   async function updateFriend() {
+    const base_url = import.meta.env.VITE_BASE_URL
     try {
       const result = await fetch(
-        `http://localhost:3002/api/users/${cardData.user}/updatefriend`,
+        `${base_url}/api/users/${cardData.user}/updatefriend`,
         {
           method: "GET",
           headers: {
@@ -41,9 +42,10 @@ export default function PostCard({ cardData }) {
   }
 
   async function likePost() {
+    const base_url = import.meta.env.VITE_BASE_URL
     try {
       const result = await fetch(
-        `http://localhost:3002/api/users/posts/${cardData._id}/updatelike`,
+        `${base_url}/api/users/posts/${cardData._id}/updatelike`,
         {
           method: "GET",
           headers: {

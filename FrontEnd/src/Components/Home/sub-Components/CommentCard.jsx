@@ -5,8 +5,9 @@ import PuffLoader from "react-spinners/PuffLoader";
 function CommentCard({ comment }) {
   async function getReply() {
     setLoading((loading) => !loading);
+    const base_url = import.meta.env.VITE_BASE_URL
     const replies = await fetch(
-      `http://localhost:3002/api/users/posts/${comment._id}/getreply`,
+      `${base_url}/api/users/posts/${comment._id}/getreply`,
       {
         headers: {
           "Content-Type": "application/json",

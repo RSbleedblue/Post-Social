@@ -7,7 +7,8 @@ import TrendingFeed from "./sub-Components/TrendingFeed";
 export async function loader() {
   try {
     const token = import.meta.env.VITE_JWTOKEN;
-    const apiCall = await fetch("http://localhost:3002/api/users/posts", {
+    const base_url = import.meta.env.VITE_BASE_URL
+    const apiCall = await fetch(`${base_url}/api/users/posts`, {
       method: "get",
       headers: {
         "Content-Type": "application/json",
