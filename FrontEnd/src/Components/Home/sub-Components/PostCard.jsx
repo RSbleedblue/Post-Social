@@ -1,134 +1,162 @@
 import React, { useState } from "react";
 import { MdOutlinePersonAdd } from "react-icons/md";
 import { BsThreeDots } from "react-icons/bs";
-import { FaRegHeart } from "react-icons/fa";
-import { FaRegCommentAlt } from "react-icons/fa";
+import { FaRegHeart, FaRegCommentAlt, FaHeart, FaShareAlt, FaComment } from "react-icons/fa";
 import { FcLike } from "react-icons/fc";
 import { FaRegShareFromSquare } from "react-icons/fa6";
 import PostModal from "./PostModal";
+import { useAuth } from "../../Auth/AuthContext";
 
 export default function PostCard({ cardData }) {
-  function modalToggle() {
-    setToggleModal((toggleModal) => !toggleModal);
-    console.log("asoidjsao");
-  }
-
-  async function updateFriend() {
-    const token = import.meta.env.VITE_JWTOKEN;
-    const result = await fetch(
-      `http://localhost:3000/api/users/${cardData.user}/updatefriend`,
-      {
-        method: "get",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    if (result.ok) {
-      setFriend((friend) => !friend);
-    }
-  }
-
-  async function likePost(e) {
-    const token = import.meta.env.VITE_JWTOKEN;
-    const result = await fetch(
-      `http://localhost:3000/api/users/posts/${cardData._id}/updatelike`,
-      {
-        method: "get",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    if (result.ok) {
-      setLiked((liked) => !liked);
-      setTotalLike((totalLike) => {
-        if (liked) totalLike -= 1;
-        else totalLike += 1;
-        return totalLike;
-      });
-    }
-  }
+  const { token } = useAuth();
 
   const [liked, setLiked] = useState(cardData.didUserLiked);
   const [totalLike, setTotalLike] = useState(cardData.totallikes);
   const [toggleModal, setToggleModal] = useState(false);
   const [friend, setFriend] = useState(cardData.isCurUserFriend);
 
+  function modalToggle() {
+    setToggleModal((toggleModal) => !toggleModal);
+  }
+
+  async function updateFriend() {
+    try {
+      const result = await fetch(
+        `http://localhost:3002/api/users/${cardData.user}/updatefriend`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (result.ok) {
+        setFriend((friend) => !friend);
+      }
+    } catch (error) {
+      console.error("Error updating friend:", error);
+    }
+  }
+
+  async function likePost() {
+    try {
+      const result = await fetch(
+        `http://localhost:3002/api/users/posts/${cardData._id}/updatelike`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (result.ok) {
+        setLiked((liked) => !liked);
+        setTotalLike((totalLike) => {
+          if (liked) return totalLike - 1;
+          else return totalLike + 1;
+        });
+      }
+    } catch (error) {
+      console.error("Error liking post:", error);
+    }
+  }
+
   return (
     <>
-      <div className="bg-white p-4 m-4 rounded-lg">
-        <div className="flex flex-row gap-4 items-center border-gray-300 border-b-2 px-2  py-2">
-          <div className="rounded-full overflow-hidden max-h-[50px] max-w-[50px]">
-            <img
-              src={cardData.profileUrl}
-              alt="Image"
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <span className="text-pmpurple text-2xl font-semibold">
-            {cardData.userName?.charAt(0).toUpperCase() +
-              cardData.userName?.slice(1)}
-          </span>
-          {!cardData.isCurUserPost && !friend && (
-            <div
-              className="flex items-center gap-2 border-[1px] px-1 rounded-lg border-black text-sm cursor-pointer"
-              onClick={updateFriend}
-            >
-              <MdOutlinePersonAdd className="text-lg" />
-              Add Friend
+      <div className="bg-overlayBlack p-4 rounded-xl w-full flex gap-2">
+        <div className="rounded-full overflow-hidden w-10 h-10">
+          <img
+            src={cardData.profileUrl}
+            alt="Profile"
+            className="w-full h-full object-cover rounded-full"
+          />
+        </div>
+        <div className="w-full flex flex-col">
+          <div className="w-full flex gap-2 items-center justify-between">
+            <div>
+              <div className="flex gap-4 items-center w-full">
+                <span className="text-white text-xl font-semibold">
+                  {cardData.userName?.charAt(0).toUpperCase() + cardData.userName?.slice(1)}
+                </span>
+                <p className="text-gray-400 text-xs">@userTag</p>
+              </div>
+              {!cardData.isCurUserPost && !friend && (
+                <div
+                  className="flex items-center gap-2 border-[1px] p-1 rounded-lg border-slate-500 text-[11px] border-opacity-30 cursor-pointer hover:bg-gray-100 transition-all w-[60%] mt-2 hover:text-black"
+                  onClick={updateFriend}
+                >
+                  <MdOutlinePersonAdd className="text-slate-400" />
+                  <p className="text-slate-400">Add Friend</p>
+                </div>
+              )}
             </div>
-          )}
-          <BsThreeDots className="text-pmpurple ml-auto text-2xl cursor-pointer" />
-        </div>
-        <p className="p-3 text-l text-pmpurple opacity-90">{cardData.title}</p>
-        <div className="text-xl flex w-[100%] justify-center">
-          <div className="max-w-screen-lg mx-auto rounded-lg overflow-hidden">
-            <img
-              onClick={modalToggle}
-              src={cardData.imgUrl}
-              className="w-full h-full object-cover"
-              alt="Test Photo"
-            />
+            <BsThreeDots className="text-white text-sm cursor-pointer" />
+          </div>
+          {/* Post Data */}
+          <div className="flex flex-col mt-4 gap-2">
+            <p className="text-sm text-white">{cardData.title}</p>
+            <div className="w-full flex justify-center">
+              <div className="w-full max-w-screen-lg h-[300px] rounded-lg overflow-hidden">
+                <img
+                  onClick={modalToggle}
+                  src={cardData.imgUrl}
+                  className="w-full h-full object-cover"
+                  alt="Post"
+                />
+              </div>
+            </div>
+            {/* Like Info */}
+            <div className="flex gap-1 mt-2 items-center">
+              <div className="rounded-full p-2 flex items-center bg-hazedBlack">
+                <FaHeart className="text-white text-xs" />
+              </div>
+              <div className="rounded-full p-2 flex items-center bg-hazedBlack">
+                <FaShareAlt className="text-white text-xs" />
+              </div>
+              <div className="rounded-full p-2 flex items-center bg-hazedBlack">
+                <FaComment className="text-white text-xs" />
+              </div>
+              {/* Calculate total Data */}
+              <div className="w-full justify-between flex">
+                <p className="text-sm ml-2 text-white">{totalLike}</p>
+                <p className="text-sm ml-2 text-white">Comments</p>
+              </div>
+            </div>
+            <div className="flex p-2 m-2 justify-between items-center w-full">
+              <div className="flex gap-2 items-center bg-hazedBlack cursor-pointer rounded-lg p-2 w-[30%] justify-center hover:bg-mainBackground transition-all hover:text-gray-300 text-white">
+                {!liked && (
+                  <FaHeart
+                    className="text-lg cursor-pointer"
+                    onClick={likePost}
+                  />
+                )}
+                {liked && (
+                  <FaHeart
+                    className="text-lg cursor-pointer"
+                    onClick={likePost}
+                  />
+                )}
+                <span className="text-xs font-semibold">Like</span>
+              </div>
+              <div className="flex gap-2 items-center bg-hazedBlack rounded-lg p-2 w-[30%] justify-center cursor-pointer hover:bg-mainBackground transition-all hover:text-gray-300 text-white">
+                <FaRegCommentAlt className="text-lg cursor-pointer" />
+                <span className="text-xs font-semibold">Comment</span>
+              </div>
+              <div className="flex gap-2 items-center bg-hazedBlack rounded-lg p-2 w-[30%] justify-center cursor-pointer hover:bg-mainBackground transition-all hover:text-gray-300 text-white">
+                <FaRegShareFromSquare className="text-lg cursor-pointer" />
+                <span className="text-xs font-semibold">Share</span>
+              </div>
+            </div>
+            <div className="flex mb-4 flex-row gap-2 items-center rounded-lg p-2 bg-hazedBlack text-white">
+              <p className="font-semibold">{cardData.userName}</p>
+              <p className="text-white text-xs">{cardData.caption}</p>
+            </div>
           </div>
         </div>
-        <div className="flex p-2 m-2 flex-row">
-          {!liked && (
-            <FaRegHeart
-              className="text-pmpurple text-2xl hover:text-hoverLike mb-2 cursor-pointer"
-              onClick={likePost}
-            />
-          )}
-          {liked && (
-            <FcLike
-              className="text-pmpurple text-2xl hover:text-hoverLike mb-2 cursor-pointer"
-              onClick={likePost}
-            />
-          )}
-          <span className="text-pmpurple mr-10 ml-2">{totalLike}</span>
-          <FaRegCommentAlt className="text-pmpurple text-2xl hover:text-hoverLike cursor-pointer" />
-          <span className="text-pmpurple mr-10 ml-2">2256</span>
-          <FaRegShareFromSquare className="text-pmpurple text-2xl hover:text-hoverLike cursor-pointer" />
-        </div>
-        <div className="flex mb-4 flex-row gap-1 items-center">
-          <span className="text-pmpurple">{cardData.caption}</span>
-        </div>
-        {/* <div className="flex flex-row gap-1 items-center">
-          <div className="rounded-full overflow-hidden max-h-[30px] max-w-[30px]">
-            <img
-              src={cardData.profileUrl}
-              alt="Image"
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div>
-            <span className="text-pmpurple text-xs opacity-50">
-              Add Comment....
-            </span>
-          </div>
-        </div> */}
       </div>
       {toggleModal && <PostModal card={cardData} toggleModal={modalToggle} />}
     </>

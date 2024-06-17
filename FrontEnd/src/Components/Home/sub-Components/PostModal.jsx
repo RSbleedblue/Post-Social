@@ -13,7 +13,7 @@ function PostModal({ card, toggleModal }) {
   useEffect(() => {
     async function fetchComment() {
       const result = await fetch(
-        `http://localhost:3000/api/users/posts/${card._id}/getcomment`,
+        `http://localhost:3002/api/users/posts/${card._id}/getcomment`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -30,7 +30,7 @@ function PostModal({ card, toggleModal }) {
   async function addComment() {
     const token = import.meta.env.VITE_JWTOKEN;
     const result = await fetch(
-      `http://localhost:3000/api/users/posts/${card._id}/addcomment`,
+      `http://localhost:3002/api/users/posts/${card._id}/addcomment`,
       {
         method: "POST",
         headers: {

@@ -4,7 +4,7 @@ import { useLoaderData } from "react-router-dom";
 export async function loader() {
   try {
     const token = import.meta.env.VITE_JWTOKEN;
-    const apiCall = await fetch("http://localhost:3000/api/users/getFriends", {
+    const apiCall = await fetch("http://localhost:3002/api/users/getFriends", {
       method: "get",
       headers: {
         "Content-Type": "application/json",
@@ -30,7 +30,7 @@ function FriendsList() {
   async function updateFriend(friendID) {
     const token = import.meta.env.VITE_JWTOKEN;
     const result = await fetch(
-      `http://localhost:3000/api/users/${friendID}/updatefriend`,
+      `http://localhost:3002/api/users/${friendID}/updatefriend`,
       {
         method: "get",
         headers: {

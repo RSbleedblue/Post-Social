@@ -10,6 +10,9 @@ export default {
         hoverLike: "#FFB5DA",
         random: "#d3dbe7",
         cmntpurple: "#9E63EA",
+        mainBackground : "#06141D",
+        overlayBlack : "#1D2932",
+        hazedBlack : "#27333D",
         richblack: {
           5: "#F1F2FF",
           25: "#DBDDEA",

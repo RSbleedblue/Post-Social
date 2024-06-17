@@ -6,7 +6,7 @@ function CommentCard({ comment }) {
   async function getReply() {
     setLoading((loading) => !loading);
     const replies = await fetch(
-      `http://localhost:3000/api/users/posts/${comment._id}/getreply`,
+      `http://localhost:3002/api/users/posts/${comment._id}/getreply`,
       {
         headers: {
           "Content-Type": "application/json",

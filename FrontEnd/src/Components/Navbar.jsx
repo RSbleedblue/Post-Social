@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../assets/Logo/logo.png";
+import logo from "../assets/Logo/logoWhite.png";
 import { MdHome } from "react-icons/md";
 import { FaCompass } from "react-icons/fa";
 import { BiSolidMessageSquareDetail } from "react-icons/bi";
@@ -8,16 +8,31 @@ import { MdAccountCircle } from "react-icons/md";
 
 export default function Navbar() {
   return (
-    <aside id="logo-sidebar" className="flex h-full" aria-label="Sidebar">
-      <div class="h-full px-3 py-10 flex flex-col overflow-y-auto bg-white items-center">
-        <a href="#" class="flex items-center ps-2.5 mb-5">
-          <img src={logo} class="h-6 sm:h-10" alt="Flowbite Logo" />
+    <aside id="logo-sidebar" className="flex h-full w-[10%]  transition-all bg-overlayBlack" aria-label="Sidebar">
+      <div className="h-full flex flex-col bg-overlayBlack items-center w-full justify-between">
+        <a href="#" className="flex items-center ps-2.5 mt-10">
+          <img src={logo} className="h-6 sm:h-10" alt="Flowbite Logo" />
         </a>
-        <MdHome className="h-6 sm:h-10 w-[60%] p-1 text-pmpurple rounded-lg dark:pmpurple hover:bg-gray-100 mb-2 cursor-pointer" />
-        <FaCompass className="h-6 sm:h-10 w-[60%] p-1 text-pmpurple rounded-lg dark:pmpurple hover:bg-gray-100 mb-2 cursor-pointer" />
-        <BiSolidMessageSquareDetail className="h-6  sm:h-11 w-[60%] p-1 text-pmpurple rounded-lg dark:pmpurple hover:bg-gray-100 mb-2 cursor-pointer" />
-        <IoNotifications className="h-6 sm:h-11 w-[60%] p-1 text-pmpurple rounded-lg dark:pmpurple hover:bg-gray-100 mb-2 cursor-pointer" />
-        <MdAccountCircle className="h-6 sm:h-11 w-[60%] p-1 text-pmpurple rounded-lg dark:pmpurple hover:bg-gray-100 mb-2 mt-auto cursor-pointer" />
+        <div className="w-full flex flex-col text-2xl items-center gap-4 transition-all">
+          <div className="w-full flex items-center text-white  hover:border-hazedBlack cursor-pointer hover:bg-hazedBlack rounded-r-lg p-2 gap-2">
+            <MdHome className="" />
+            <p className="text-sm font-semibold">Home</p>
+          </div>
+          <div className="w-full flex items-center text-white  hover:border-hazedBlack cursor-pointer hover:bg-hazedBlack rounded-r-lg p-2 gap-2">
+            <FaCompass className=" " />
+            <p className="text-sm font-semibold">Explore</p>
+          </div>
+          <div className="w-full flex items-center text-white  hover:border-hazedBlack cursor-pointer hover:bg-hazedBlack rounded-r-lg p-2 gap-2">
+            <BiSolidMessageSquareDetail className=" " />
+            <p className="text-sm font-semibold">Messages</p>
+          </div>
+          <div className="w-full flex items-center text-white  hover:border-hazedBlack cursor-pointer hover:bg-hazedBlack rounded-r-lg p-2 gap-2">
+            <IoNotifications className=" " />
+            <p className="text-sm font-semibold">Notification</p>
+          </div>
+        </div>
+          <MdAccountCircle className="text-white text-[40px] hover:bg-gray-100 rounded-full p-1 cursor-pointer" />
+      
       </div>
     </aside>
   );
