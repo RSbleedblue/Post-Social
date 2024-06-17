@@ -28,9 +28,10 @@ const LoginForm = () => {
 
     }
     const submitHandler = async (event) => {
+        const base_url = import.meta.env.VITE_BASE_URL
         event.preventDefault();
         try{
-            const res = await fetch("http://localhost:3002/api/users/login",{
+            const res = await fetch(`${base_url}/api/users/login`,{
                 method: 'POST',
                 headers : {
                     'Content-Type' : 'application/json',

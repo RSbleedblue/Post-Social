@@ -12,8 +12,9 @@ function PostModal({ card, toggleModal }) {
 
   useEffect(() => {
     async function fetchComment() {
+      const base_url = import.meta.env.VITE_BASE_URL
       const result = await fetch(
-        `http://localhost:3002/api/users/posts/${card._id}/getcomment`,
+        `${base_url}/api/users/posts/${card._id}/getcomment`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -29,8 +30,9 @@ function PostModal({ card, toggleModal }) {
 
   async function addComment() {
     const token = import.meta.env.VITE_JWTOKEN;
+    const base_url = import.meta.env.VITE_BASE_URL
     const result = await fetch(
-      `http://localhost:3002/api/users/posts/${card._id}/addcomment`,
+      `${base_url}/api/users/posts/${card._id}/addcomment`,
       {
         method: "POST",
         headers: {
