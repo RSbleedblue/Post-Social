@@ -1,8 +1,8 @@
 import React from "react";
-import PostFeed from "./sub-Components/PostFeed";
-import RSideFeed from "./sub-Components/RSideFeed";
+import PostFeed from "../Components/posts/PostFeed";
+import RSideFeed from "../Components/Home/RSideFeed";
 import { useLoaderData } from "react-router-dom";
-import TrendingFeed from "./sub-Components/TrendingFeed";
+import TrendingFeed from "../Components/Home/TrendingFeed";
 
 export async function loader() {
   try {
@@ -20,7 +20,7 @@ export async function loader() {
     console.log(error);
   }
 }
-export default function DyHome() {
+export default function Home() {
   const data = useLoaderData();
   return (
     <>

@@ -46,49 +46,48 @@ export class postController {
   }
   async create(req, res) {
     upload.single("imgPath")(req, res, async (err) => {
-      if (err) {
-        return res
-          .status(StatusCodes.BAD_REQUEST)
-          .json({ message: "Error while uploading File" });
+      try {
+        if (err) {
+          return res
+            .status(StatusCodes.BAD_REQUEST)
+            .json({ message: "Error while uploading File" });
+        }
+
+        const { title, caption } = req.body;
+        const user = req.userID;
+
+        if (!title || !caption) {
+          return res
+            .status(StatusCodes.BAD_REQUEST)
+            .send({ message: "Missing fields" });
+        }
+
+        // Now, you can access req.file as the file has been uploaded successfully
+        const imgPath = req.file;
+        const imgURI = getDataUri(imgPath);
+
+        const myCloud = await cloudinary.uploader.upload(imgURI.content);
+        const imgUrl = myCloud.url;
+
+        const result = await postServiceInstance.addPost(
+          caption,
+          title,
+          imgUrl,
+          user
+        );
+        const userInfo = await userServiceInstance.findUser(user);
+        const finalResult = { ...result, ...userInfo };
+        console.log(finalResult);
+
+        if (!result) {
+          return res
+            .status(StatusCodes.BAD_REQUEST)
+            .json({ message: "Failed to create a Post" });
+        }
+        return res.status(StatusCodes.ACCEPTED).send({ result, userInfo });
+      } catch (error) {
+
       }
-
-      const { title, caption } = req.body;
-      const user = req.userID;
-
-      console.log(user);
-      console.log(req.body);
-      console.log(req.file);
-
-      if (!title || !caption) {
-        return res
-          .status(StatusCodes.BAD_REQUEST)
-          .send({ message: "Missing fields" });
-      }
-
-      // Now, you can access req.file as the file has been uploaded successfully
-      const imgPath = req.file;
-      const imgURI = getDataUri(imgPath);
-
-      const myCloud = await cloudinary.uploader.upload(imgURI.content);
-
-      const imgUrl = myCloud.url;
-
-      const result = await postServiceInstance.addPost(
-        caption,
-        title,
-        imgUrl,
-        user
-      );
-      const userInfo = await userServiceInstance.findUser(user);
-      const finalResult = { ...result, ...userInfo };
-      console.log(finalResult);
-
-      if (!result) {
-        return res
-          .status(StatusCodes.BAD_REQUEST)
-          .json({ message: "Failed to create a Post" });
-      }
-      return res.status(StatusCodes.ACCEPTED).send({ result, userInfo });
     });
   }
   async updateLike(req, res) {

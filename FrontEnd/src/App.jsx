@@ -1,38 +1,28 @@
-import "./App.css";
 import {
+  Route,
   RouterProvider,
   createBrowserRouter,
   createRoutesFromElements,
-  Route,
 } from "react-router-dom";
+import "./App.css";
 
-import Layout from "./Components/Layout";
-import Home from "./Components/Home/Home";
-import DyHome, { loader as DyLoader } from "./Components/Home/DyHome.jsx";
-import Login from "./Components/Auth/Login.jsx";
-import Signup from "./Components/Auth/Signup.jsx";
-import FriendsList, {
-  loader as FriendsLoader,
-} from "./Components/Friends/Friends.jsx";
-import ChatBox from "./Components/Chats/ChatBox.jsx";
 import { AuthProvider } from "./Components/Auth/AuthContext.jsx";
+import Login from "./Components/Auth/Login.jsx";
 import PrivateRoute from "./Components/Auth/PrivateRoute.jsx";
+import Signup from "./Components/Auth/Signup.jsx";
+import Home, { loader as DyLoader } from "./pages/Home.jsx";
+import HomeLayout from "./shared/HomeLayout.jsx";
+import Layout from "./shared/Layout.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="/" element={<Layout />}>
         <Route element={<PrivateRoute/>}>
-          <Route element={<Home />}>
-            <Route index element={<DyHome />} loader={DyLoader} />
-            <Route
-              path="friends"
-              element={<FriendsList />}
-              loader={FriendsLoader}
-            />
+          <Route element={<HomeLayout />}>
+            <Route index element={<Home />} loader={DyLoader} />
           </Route>
         </Route>
-        <Route path="chat" element={<ChatBox />} />
       </Route>
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
