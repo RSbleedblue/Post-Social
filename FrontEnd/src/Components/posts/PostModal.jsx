@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import { FaComments } from "react-icons/fa6";
-import CommentCard from "./CommentCard";
+import CommentCard from "../comment/CommentCard";
 import ScaleLoader from "react-spinners/ScaleLoader";
 import { IoSendSharp } from "react-icons/io5";
 

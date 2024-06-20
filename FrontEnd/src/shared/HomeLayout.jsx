@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 
-function Home() {
+function HomeLayout() {
   return (
     <div className="flex gap-4 h-full bg-mainBackground">
       <Outlet />
@@ -9,4 +9,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default HomeLayout;

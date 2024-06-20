@@ -1,6 +1,6 @@
 import React from "react";
-import luffy from "../../../assets/banner.jpg";
-import prof_banner from "../../../assets/profile_banner.jpeg";
+import luffy from "../../assets/banner.jpg";
+import prof_banner from "../../assets/profile_banner.jpeg";
 import { FaRegUser } from "react-icons/fa";
 
 function RSideFeed() {

@@ -5,7 +5,7 @@ import { FaRegHeart, FaRegCommentAlt, FaHeart, FaShareAlt, FaComment } from "rea
 import { FcLike } from "react-icons/fc";
 import { FaRegShareFromSquare } from "react-icons/fa6";
 import PostModal from "./PostModal";
-import { useAuth } from "../../Auth/AuthContext";
+import { useAuth } from "../Auth/AuthContext";
 
 export default function PostCard({ cardData }) {
   const { token } = useAuth();
